@@ -1,28 +1,44 @@
 // Retrieve tasks and nextId from localStorage
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
-const addTaskButton = $('btn');
-const modal = $('modal');
+const addTaskButton = $('.btn-success');
+const modal = $('.modal');
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
-
+    const id = Math.random().toString(36).substr(2, 9);
+    console.log(id);
 }
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
-    const taskCard = $('<div>');
-    const cardHeader = $("div").addClass("card-header")
+    let div = $('<div>');
+    div.addClass('card draggable').attr("style", "width: 18rem");
+    let title = $("div").addClass("task-title").text("task-title");
+    let cardBody = $("div").addClass("modal-form");
+    let cardDate = $("due-date").addClass("date").text('date');
+    let cardInfo = $("description").addClass("task").text("description");
+
+    div.append(title);
+    div.append(cardBody);
+    cardBody.append(cardDate);
+    cardBody.append(cardInfo);
+    
+
 }
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-
+    $( function() {
+        $( "#draggable" ).draggable();
+      } );
 }
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event){
-
+    let task = document.querySelector("modal-form");
+  let inputVal = document.getElementById("task").value;
+  task.innerHTML = inputVal;
 }
 
 // Todo: create a function to handle deleting a task
