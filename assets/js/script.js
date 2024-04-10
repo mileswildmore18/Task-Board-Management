@@ -11,7 +11,8 @@ function generateTaskId() {
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
-
+    const taskCard = $('<div>');
+    const cardHeader = $("div").addClass("card-header")
 }
 
 // Todo: create a function to render the task list and make cards draggable
@@ -31,6 +32,17 @@ function handleDeleteTask(event){
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
+    $( function() {
+        $( "#draggable" ).draggable();
+        $( "#droppable" ).droppable({
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+          }
+        });
+      } );
 
 }
 
@@ -38,3 +50,24 @@ function handleDrop(event, ui) {
 $(document).ready(function () {
 
 });
+
+
+{/* <div class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Task</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Task Title</p>
+            <p>Task Due Date</p>
+            <p>Task Description</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div> */}
