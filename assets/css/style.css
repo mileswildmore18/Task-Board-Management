@@ -14,12 +14,3 @@ body {
 .task-card:hover {
   cursor: grab;
 }
-.modal-title {
-  font-family:Arial, Helvetica, sans-serif;
-}
-.modal-body {
-  font-size: 22px;
-}
-.modal-footer{
-  font-family:Arial, Helvetica, sans-serif;
-}
