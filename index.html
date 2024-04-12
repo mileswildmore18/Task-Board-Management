@@ -26,7 +26,7 @@
     </div>
     <!-- Todo: Create a modal with a form to add tasks -->
     <!-- Triggers the modal to appear -->
-    <div class="modal" id ="formModal" tabindex="-1">
+    <div class="modal" id ="formModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -44,8 +44,9 @@
             <input type="text" class="task" name = "task">
              
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id ="add-task">Add Task</button>
+            <button type="button" class="btn btn-primary" id ="add-task">Add Task</button>     
           </div>
+          </form>
         </div>
       </div>
     </div>
