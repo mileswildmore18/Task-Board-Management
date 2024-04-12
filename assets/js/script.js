@@ -46,7 +46,7 @@ function createTaskCard(task) {
   //Add a button for deleting
   // When delete is clicked, it deletes the box
     const taskCard = $('<div>')
-    .addClass('card project-card draggable my-3')
+    .addClass('card project-card draggable my-3 task-card')
     .attr('data-project-id', `${taskEl.id}`);
   const cardHeader = $('<div>').addClass('card-header h4').text(taskEl.title);
   const cardBody = $('<div>').addClass('card-body');
@@ -75,9 +75,9 @@ function createTaskCard(task) {
  // Gather all the elements created above and append them to the correct elements.
 cardBody.append(cardDescription, cardDueDate, cardDeleteBtn);
 taskCard.append(cardHeader, cardBody);
-taskArray.push(taskCard)
+taskArray.push(taskCard);
 //Return the card so it can be appended to the correct lane.
-console.log("Items entered")
+console.log("Items entered");
 })
     return taskArray;
 
@@ -102,7 +102,6 @@ function renderTaskList() {
     }
   })
   
-  console.log(taskCard);
   $( ".draggable" ).draggable();
     
     //Calls Create the task card
@@ -134,26 +133,24 @@ function handleAddTask(event){
 // Todo: create a function to handle deleting a task
 // This function will delete the task
 function handleDeleteTask(event){
-    
+   const taskId = $(this).attr('data-task-id')
+   taskArray = taskArray.filter(task => task.id !== parseInt(taskId));
+   localStorage.setItem('taskArray', JSON.stringify(taskArray));
+   renderTaskList()
+  }
+
+
     //Delete the box when Delete is clicked
     //Rerender the box using the Render Task Card
     
-}
+
 
 // Todo: create a function to handle dropping a task into a new status lane
 //Makes the task droppable to the given box
 function handleDrop(event, ui) {
-    $( function() {
+   
         
-        $( ".lane" ).droppable({
-          drop: function( event, ui ) {
-            $( this )
-              .addClass( "ui-state-highlight" )
-              .find( "p" )
-                .html( "Dropped!" );
-          }
-        });
-      } );
+       
 
 }
 
@@ -169,15 +166,11 @@ $("#add-task").on("click", function (event){
   event.preventDefault()
     console.log('I clicked the button');
     
-   handleAddTask()
+   handleAddTask();
 
 })
-$('.project-card').draggable({
-  revert:'invalid',
-  containment: 'document'
-})
 $('.lane').droppable({
-  accept:'.project-card',
+  accept:'.draggable',
   drop:handleDrop
 })
 });
